@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Features.Empresa.Query.GetEmpresaPaginado;
 using Application.Features.Empresa.Query.GetEmpresas;
+using Application.Features.Producto.Query.ProductoPaginado;
 using Application.Features.Representante.Query.GetRepresentantePaginado;
 using AutoMapper;
 using Domain.Entities;
@@ -20,6 +21,8 @@ namespace Application.Profile
 
             CreateMap<Representante, RepresentantePaginado>().ForMember(x => x.NombreEmpresa, dto => dto.MapFrom(campo => campo.Empresa.Nombre))
                     .ForMember(x => x.EmpresaId, dto => dto.MapFrom(campo => campo.Empresa.EmpresaId));
+
+            CreateMap<Producto, ProductoPaginadoVm>().ReverseMap();
         }
     }
 }
