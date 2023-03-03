@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories_Interfaces
 {
-    public interface IEmpresaRepository : IRepository<Empresa>
+    public interface IRepresentanteRepository : IRepository<Representante>
     {
-        PagedList<Empresa> ListEmpresaPaginado(PagedRequest page);
+        PagedList<Representante> ListRepresentantePaginado(PagedRequest page);
     }
 }

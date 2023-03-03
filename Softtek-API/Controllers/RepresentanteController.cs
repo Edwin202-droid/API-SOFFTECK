@@ -1,7 +1,6 @@
-﻿using Application.Features.Empresa.Command.GestionEmpresa;
-using Application.Features.Empresa.Query.GetEmpresaPaginado;
+﻿using Application.Features.Representante.Command.GestionRepresentante;
+using Application.Features.Representante.Query.GetRepresentantePaginado;
 using Data;
-using Domain.Entities;
 using DTO;
 using Helpers.Pagination;
 using MediatR;
@@ -11,22 +10,23 @@ using Newtonsoft.Json;
 namespace Softtek_API.Controllers
 {
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class RepresentanteController  : ControllerBase
     {
         private readonly SoftteckContext context;
         private readonly IMediator mediator;
 
-        public EmpresaController(SoftteckContext context, IMediator mediator)
+        public RepresentanteController(SoftteckContext context, IMediator mediator)
         {
             this.context = context;
             this.mediator = mediator;
         }
 
+
         [HttpPost]
-        [Route("GestionEmpresa")]
-        public async Task<ActionResult> GestionEmpresa([FromBody] GestionEmpresaCommand empresa)
+        [Route("GestionRepresentante")]
+        public async Task<ActionResult> GestionRepresentante([FromBody] GestionRepresentanteCommand representante)
         {
-            var response = await mediator.Send(empresa);
+            var response = await mediator.Send(representante);
             if (response.IsSuccess)
             {
                 return Ok(response);
@@ -37,8 +37,8 @@ namespace Softtek_API.Controllers
             }
         }
 
-        [HttpPost("EmpresaPaginado")]
-        public async Task<ActionResult<List<EmpresaPaginado>>> GetEmpresaPaginado([FromBody] FiltroPaginado filtro)
+        [HttpPost("RepresentantePaginado")]
+        public async Task<ActionResult<List<RepresentantePaginado>>> GetEmpresaPaginado([FromBody] FiltroPaginado filtro)
         {
             var page = new PagedRequest
             {
@@ -46,7 +46,7 @@ namespace Softtek_API.Controllers
                 PageSize = 10
             };
 
-            var request = new GetEmpresaPaginadoQuery
+            var request = new GetRepresentantePaginadoQuery
             {
                 Page = page
             };

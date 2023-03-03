@@ -24,8 +24,11 @@ builder.Services.AddScoped<IUnitOfWork, DbContextAdapter>();
 
 
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddScoped<IRepresentanteRepository, RepresentanteRepository>();
+
 
 builder.Services.AddMediatR(typeof(GestionEmpresaCommand).Assembly);
+builder.Services.AddAutoMapper(typeof(GestionEmpresaCommand).Assembly);
 
 var app = builder.Build();
 
