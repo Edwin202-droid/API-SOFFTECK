@@ -30,6 +30,7 @@ namespace Data.Repositories
                              Telefono = r.Telefono,
                              Empresa = new Empresa
                              {
+                                 EmpresaId = e.EmpresaId,
                                  Nombre = e.Nombre
                              }
                          });

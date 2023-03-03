@@ -13,5 +13,6 @@ namespace Application.Features.Representante.Query.GetRepresentantePaginado
         public string NumeroDocumento { get; set; }
         public string Telefono { get; set; }
         public string NombreEmpresa { get; set; }
+        public Guid EmpresaId { get; set; }
     }
 }

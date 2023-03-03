@@ -1,5 +1,6 @@
 ﻿using Application.Features.Empresa.Command.GestionEmpresa;
 using Application.Features.Empresa.Query.GetEmpresaPaginado;
+using Application.Features.Empresa.Query.GetEmpresas;
 using Data;
 using Domain.Entities;
 using DTO;
@@ -54,6 +55,13 @@ namespace Softtek_API.Controllers
 
             HttpContext.Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(response.paging));
             return Ok(response.records);
+        }
+
+        [HttpGet("GetEmpresas")]
+        public async Task<ActionResult<List<GetEmpresa>>> GetEmpresas()
+        {
+            var response = await mediator.Send(new GetEmpresaQuery { });
+            return Ok(response);
         }
     }
 }

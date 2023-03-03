@@ -11,11 +11,18 @@ namespace Data
 {
     public class SoftteckContext : DbContext
     {
+        public SoftteckContext(DbContextOptions<SoftteckContext> options)
+            : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseInMemoryDatabase(databaseName: "SOFTTECK-BD");
             optionsBuilder.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+
         }
+
 
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Representante> Representantes { get; set; }
