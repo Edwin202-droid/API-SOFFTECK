@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Data
 {
-    public class SoftteckContext : DbContext
+    public class SoftteckContext : IdentityDbContext<Usuario>
     {
         public SoftteckContext(DbContextOptions<SoftteckContext> options)
             : base(options)

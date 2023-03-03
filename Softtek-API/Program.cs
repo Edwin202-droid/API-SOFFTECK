@@ -6,6 +6,11 @@ using Data.Repositories_Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +32,28 @@ builder.Services.AddCors(opt => opt.AddPolicy("CorsPolicy",
                     .WithOrigins("http://localhost:4200");
 
             }));
+
+
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+                                .AddEntityFrameworkStores<SoftteckContext>()
+                                .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(opciones =>
+                        opciones.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
+                            //Duracion del token
+                            ValidateLifetime = true,
+                            //Firma llave privada
+                            ValidateIssuerSigningKey = true,
+                            //configurar la firma con una llave
+                            IssuerSigningKey = new SymmetricSecurityKey(
+                                Encoding.UTF8.GetBytes(builder.Configuration["llavejwt"])),
+                            ClockSkew = TimeSpan.Zero
+                        });
+
 builder.Services.AddDbContext<SoftteckContext>();
 
 
