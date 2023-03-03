@@ -12,5 +12,6 @@ namespace Data.Repositories_Interfaces
     public interface IRepresentanteRepository : IRepository<Representante>
     {
         PagedList<Representante> ListRepresentantePaginado(PagedRequest page);
+        Task<IReadOnlyList<Representante>> GetRepresentantes(Guid id);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.Features.Representante.Command.GestionRepresentante;
+using Application.Features.Representante.Query.GetRepresentanteForEmpresaId;
 using Application.Features.Representante.Query.GetRepresentantePaginado;
 using Data;
 using DTO;
@@ -54,6 +55,13 @@ namespace Softtek_API.Controllers
 
             HttpContext.Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(response.paging));
             return Ok(response.records);
+        }
+
+        [HttpGet("GetRepresentantes")]
+        public async Task<ActionResult<List<RepresentanteVm>>> GetRepresentantes(Guid empresaId)
+        {
+            var response = await mediator.Send(new GetRepresentanteQuery {  EmpresaId = empresaId});
+            return Ok(response);
         }
     }
 }

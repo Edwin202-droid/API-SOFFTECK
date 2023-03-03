@@ -2,6 +2,7 @@
 using Data.Repositories_Interfaces;
 using Domain.Entities;
 using Helpers.Pagination;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,14 @@ namespace Data.Repositories
                          });
             var queryPaged = PagedList<Representante>.Create(query, page.PageNumber, page.PageSize);
             return queryPaged;
+        }
+
+        public async Task<IReadOnlyList<Representante>> GetRepresentantes(Guid id)
+        {
+            var query = await (from r in softteckContext.Representantes
+                               where r.EmpresaId == id
+                               select r).ToListAsync();
+            return query;
         }
     }
 }

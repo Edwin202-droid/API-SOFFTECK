@@ -22,7 +22,7 @@ namespace Application.Features.Nota.Command.CreateNota
     {
         public Guid ProductoId { get; set; }
         public string Nombre { get; set; }
-        public decimal Subtotal { get; set; }
+        public decimal Precio { get; set; }
         public decimal Cantidad { get; set; }
     }
 }
