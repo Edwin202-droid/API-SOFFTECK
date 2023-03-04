@@ -22,7 +22,7 @@ namespace Application.Features.Nota.Query.GetNotas
 
         public async Task<List<NotasVm>> Handle(GetNotaQuery request, CancellationToken cancellationToken)
         {
-            var notas = await notaRepository.GetNotas();
+            var notas = await notaRepository.GetNotas(request.UserId);
             return mapper.Map<List<NotasVm>>(notas);
         }
     }

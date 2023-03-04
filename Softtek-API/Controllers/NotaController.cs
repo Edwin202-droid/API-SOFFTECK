@@ -2,11 +2,13 @@
 using Application.Features.Nota.Query.GetNotas;
 using Data;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Softtek_API.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class NotaController : ControllerBase
     {
         private readonly SoftteckContext context;
@@ -34,10 +36,10 @@ namespace Softtek_API.Controllers
         }
 
         [HttpGet]
-        [Route("GetNotas")]
-        public async Task<ActionResult<List<NotasVm>>> GetNotas()
+        [Route("GetNotas/{id}")]
+        public async Task<ActionResult<List<NotasVm>>> GetNotas(string id)
         {
-            var response = await mediator.Send(new GetNotaQuery { });
+            var response = await mediator.Send(new GetNotaQuery { UserId = id });
             return Ok(response);
         }
     }

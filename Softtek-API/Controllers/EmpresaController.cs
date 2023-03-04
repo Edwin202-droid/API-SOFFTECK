@@ -6,21 +6,26 @@ using Domain.Entities;
 using DTO;
 using Helpers.Pagination;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Softtek_API.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class EmpresaController : ControllerBase
     {
         private readonly SoftteckContext context;
         private readonly IMediator mediator;
+        private readonly UserManager<Usuario> userManager;
 
-        public EmpresaController(SoftteckContext context, IMediator mediator)
+        public EmpresaController(SoftteckContext context, IMediator mediator, UserManager<Domain.Entities.Usuario> userManager)
         {
             this.context = context;
             this.mediator = mediator;
+            this.userManager = userManager;
         }
 
         [HttpPost]
@@ -41,6 +46,7 @@ namespace Softtek_API.Controllers
         [HttpPost("EmpresaPaginado")]
         public async Task<ActionResult<List<EmpresaPaginado>>> GetEmpresaPaginado([FromBody] FiltroPaginado filtro)
         {
+
             var page = new PagedRequest
             {
                 PageNumber = filtro.NumeroPagina,

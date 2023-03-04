@@ -11,7 +11,7 @@ namespace Domain.Entities
         public Guid NotaId { get; set; }
         public string Descripcion { get; set; }
         public decimal Total { get; set; }
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
         public Guid EmpresaId { get; set; }
         public Empresa Empresa { get; set; }
         public Guid RepresentanteId { get; set; }

@@ -20,11 +20,12 @@ namespace Data.Repositories
         }
 
 
-        public async Task<IReadOnlyList<Nota>> GetNotas()
+        public async Task<IReadOnlyList<Nota>> GetNotas(string usuarioId)
         {
             var query = await (from n in softteckContext.Nota
                                join e in softteckContext.Empresas on n.EmpresaId equals e.EmpresaId
                                join r in softteckContext.Representantes on n.RepresentanteId equals r.RepresentanteId
+                               where n.UsuarioId == usuarioId
                                select new Nota
                                {
                                    Descripcion = n.Descripcion,

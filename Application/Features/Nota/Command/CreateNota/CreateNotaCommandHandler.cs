@@ -35,6 +35,7 @@ namespace Application.Features.Nota.Command.CreateNota
                         Total = request.Total,
                         RepresentanteId = request.RepresentanteId,
                         EmpresaId = request.EmpresaId,
+                        UsuarioId = request.UsuarioId,
                     };
 
                     await notaRepository.AddAsync(nota);

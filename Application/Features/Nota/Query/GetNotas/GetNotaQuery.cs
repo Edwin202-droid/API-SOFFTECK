@@ -9,5 +9,6 @@ namespace Application.Features.Nota.Query.GetNotas
 {
     public class GetNotaQuery : IRequest<List<NotasVm>>
     {
+        public string UserId { get; set; }
     }
 }

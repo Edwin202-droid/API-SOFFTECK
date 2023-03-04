@@ -45,7 +45,8 @@ namespace Application.Features.Usuario.Login
                     Message = "Login correcto",
                     Nombres = usuario.NombreCompleto,
                     Token = token.Token,
-                    UserName = usuario.UserName
+                    UserName = usuario.UserName,
+                    UserId = usuario.Id
                 };
             }
             else

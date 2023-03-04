@@ -4,12 +4,14 @@ using Data;
 using DTO;
 using Helpers.Pagination;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Softtek_API.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class ProductoController : ControllerBase
     {
         private readonly SoftteckContext context;

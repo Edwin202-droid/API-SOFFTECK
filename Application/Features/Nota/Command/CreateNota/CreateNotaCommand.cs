@@ -11,11 +11,11 @@ namespace Application.Features.Nota.Command.CreateNota
     {
         public string Descripcion { get; set; }
         public decimal Total { get; set; }
-        public Guid UsuarioId { get; set; }
 
         public Guid EmpresaId { get; set; }
         public Guid RepresentanteId { get; set; }
         public List<Detalles> Detalles { get; set; }
+        public string UsuarioId { get; set; }
     }
 
     public class Detalles

@@ -63,7 +63,8 @@ namespace Application.Features.Usuario.GestionUsuario
                             Nombres = usuario.NombreCompleto,
                             //roles = null, porque recien estamos creando al usuario
                             Token = token.Token,
-                            UserName = usuario.UserName
+                            UserName = usuario.UserName,
+                            UserId = usuario.Id
                         };
                     }
                     else
@@ -101,7 +102,8 @@ namespace Application.Features.Usuario.GestionUsuario
                             Nombres = usuarioIden.NombreCompleto,
                             //roles = null, porque recien estamos creando al usuario
                             Token = token.Token,
-                            UserName = usuarioIden.UserName
+                            UserName = usuarioIden.UserName,
+                            UserId = usuarioIden.Id
                         };
                     }
                     else
