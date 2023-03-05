@@ -72,6 +72,9 @@ builder.Services.AddScoped<INotaRepository, NotaRepository>();
 builder.Services.AddMediatR(typeof(GestionEmpresaCommand).Assembly);
 builder.Services.AddAutoMapper(typeof(GestionEmpresaCommand).Assembly);
 
+
+builder.WebHost.UseUrls("http://*:8080");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
