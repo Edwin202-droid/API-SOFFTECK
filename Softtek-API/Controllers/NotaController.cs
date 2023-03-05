@@ -1,4 +1,5 @@
 ﻿using Application.Features.Nota.Command.CreateNota;
+using Application.Features.Nota.Query.GetNotaForId;
 using Application.Features.Nota.Query.GetNotas;
 using Data;
 using MediatR;
@@ -40,6 +41,14 @@ namespace Softtek_API.Controllers
         public async Task<ActionResult<List<NotasVm>>> GetNotas(string id)
         {
             var response = await mediator.Send(new GetNotaQuery { UserId = id });
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("GetNotaForId/{id}")]
+        public async Task<ActionResult<NotaForIdVm>> GetNotaForId(Guid id)
+        {
+            var response = await mediator.Send(new GetNotaForIdQuery { NotaId = id });
             return Ok(response);
         }
     }

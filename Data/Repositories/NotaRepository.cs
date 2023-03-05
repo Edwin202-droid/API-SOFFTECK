@@ -28,6 +28,7 @@ namespace Data.Repositories
                                where n.UsuarioId == usuarioId
                                select new Nota
                                {
+                                   NotaId = n.NotaId,
                                    Descripcion = n.Descripcion,
                                    Total = n.Total,
                                    Empresa = new Empresa
@@ -39,6 +40,32 @@ namespace Data.Repositories
                                        Nombre = r.Nombre
                                    }
                                }).ToListAsync();
+            return query;
+        }
+
+        public async Task<Nota> GetNotaForId(Guid notaId)
+        {
+            var query = await (from n in softteckContext.Nota
+                               join e in softteckContext.Empresas on n.EmpresaId equals e.EmpresaId
+                               join r in softteckContext.Representantes on n.RepresentanteId equals r.RepresentanteId
+                               where n.NotaId == notaId
+                               select new Nota
+                               {
+                                   Descripcion = n.Descripcion,
+                                   Total = n.Total,
+                                   Empresa = new Empresa
+                                   {
+                                       Nombre = e.Nombre
+                                   },
+                                   Representante = new Representante
+                                   {
+                                       Nombre = r.Nombre,
+                                       Telefono = r.Telefono,
+                                   },
+                                   NotaDetalles = (from nd in softteckContext.NotaDetalle
+                                                   where nd.NotaId == notaId
+                                                   select nd).ToList()
+                               }).FirstOrDefaultAsync();
             return query;
         }
     }

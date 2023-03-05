@@ -11,5 +11,6 @@ namespace Data.Repositories_Interfaces
     public interface INotaRepository : IRepository<Nota>
     {
         Task<IReadOnlyList<Nota>> GetNotas(string usuarioId);
+        Task<Nota> GetNotaForId(Guid notaId);
     }
 }

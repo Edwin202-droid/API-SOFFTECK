@@ -50,6 +50,8 @@ namespace Application.Features.Nota.Command.CreateNota
                             NombreProducto = item.Nombre,
                             Cantidad = item.Cantidad,
                             Subtotal = item.Precio * item.Cantidad,
+                            NotaId = nota.NotaId,
+                            NotaDetalleId = Guid.NewGuid(),
                         };
 
                         await notaDetalleRepository.AddAsync(detalle);

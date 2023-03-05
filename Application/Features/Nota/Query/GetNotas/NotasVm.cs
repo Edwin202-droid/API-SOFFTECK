@@ -8,6 +8,7 @@ namespace Application.Features.Nota.Query.GetNotas
 {
     public class NotasVm
     {
+        public Guid NotaId { get; set; }
         public string Descripcion { get; set; }
         public decimal Total { get; set; }
         public string NombreEmpresa { get; set; }
